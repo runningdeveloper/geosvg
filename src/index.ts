@@ -1,5 +1,5 @@
-import { getBounds, getDistance, getDistanceFromLine } from "geolib";
-import { xml2json } from "xml2json-light";
+import { getBounds, getDistance, getDistanceFromLine } from "npm:geolib";
+import { xml2json } from "npm:xml2json-light";
 
 export interface Gpx {
   gpx: {
