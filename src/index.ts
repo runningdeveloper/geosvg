@@ -169,10 +169,13 @@ export function generateCartesianDetails(
       ? [options.scale, options.scale * (absoluteHeight / absoluteWidth)]
       : [options.scale * (absoluteWidth / absoluteHeight), options.scale];
   const multiplier = width / absoluteWidth;
-  const cartesianPoints: CartesianPoint[] = points.map((point) => ({
-    x: getDistanceFromLine(point, ...yAxis, options.accuracy) * multiplier,
-    y: getDistanceFromLine(point, ...xAxis, options.accuracy) * multiplier,
-  }));
+  const cartesianPoints: CartesianPoint[] = points.map((point) => {
+    const x  = getDistanceFromLine(point, ...yAxis, options.accuracy) * multiplier;
+    const y = getDistanceFromLine(point, ...xAxis, options.accuracy) * multiplier;
+    return ({
+    x: isNaN(x) ? 0 : x,
+    y: isNaN(y) ? 0 : y,
+  });});
   return {
     points: cartesianPoints,
     width,
